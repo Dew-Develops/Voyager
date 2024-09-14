@@ -1,16 +1,20 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, ipcMain } from 'electron';
 import { fileURLToPath } from 'url';
 import path from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+let mainWindow;
 
 function createWindow() {
-    const mainWindow = new BrowserWindow({
+    mainWindow = new BrowserWindow({
         width: 800,
         height: 600,
         webPreferences: {
-            nodeIntegration: true,
+            preload: path.join(__dirname, 'preload.js'),
+            nodeIntegration: false,
+            contextIsolation: true,
+            enableRemoteModule: false
         },
         autoHideMenuBar: true,
     });
@@ -31,3 +35,13 @@ app.on('activate', () => {
         createWindow();
     }
 });
+
+ipcMain.on('navigate', (event, url) => {
+    console.log('Received navigate event with URL:', url);
+    if (mainWindow) {
+        mainWindow.webContents.loadURL(url);
+    } else {
+        console.error('mainWindow is not defined');
+    }
+});
+
