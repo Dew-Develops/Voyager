@@ -12,6 +12,7 @@ function createWindow() {
         webPreferences: {
             nodeIntegration: true,
         },
+        autoHideMenuBar: true,
     });
 
     mainWindow.loadFile(path.join(__dirname, 'public/index.html'));
