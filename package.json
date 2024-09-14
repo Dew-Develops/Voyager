@@ -1,0 +1,26 @@
+{
+  "name": "voyager",
+  "version": "1.0.0",
+  "description": "Voyager is designed to be a browser that will let you sail the internet with ease.",
+  "type": "module",
+  "main": "main.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "start": "electron ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "electron": "^32.1.0",
+    "rollup": "^4.21.3",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-svelte": "^7.2.2",
+    "svelte": "^4.2.19"
+  }
+}
